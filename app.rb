@@ -4,15 +4,15 @@ class App
     request = Rack::Request.new(env)
     @response = Rack::Response.new
     params = request.params["format"].split(",")
-    @time = TimeCalulation.new(params)
-    [ status, headers, body ]
+    @format = TimeCalulation.new(params)
+    [ status, headers, body]
     @response.finish
   end
 
   private
 
   def status
-    if @time.correct_parse?
+    if @format.correct_parse?
       200
     else
       404
@@ -24,10 +24,10 @@ class App
   end
 
   def body
-    if @time.correct_parse?
-      @response.write "#{@time.return_time}"
+    if @format.correct_parse?
+      @response.write "#{@format.return_time}"
     else
-      @response.write "#{@time.return_time}"
+      @response.write "#{@format.return_unknown_formats}"
     end
   end
 

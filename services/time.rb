@@ -9,20 +9,12 @@ class TimeCalulation
     time_calculation
   end
 
-  def return_time
-    if correct_parse?
-      @time
-    else
-      @unknown_formats
-    end
-  end
+  def return_time; @time;  end
+
+  def return_unknown_formats; @unknown_formats;  end
 
   def correct_parse?
-    if @unknown_formats == "Unknown time format "
-      true
-    else
-      false
-    end
+    @unknown_formats == "Unknown time format "
   end
 
   private
